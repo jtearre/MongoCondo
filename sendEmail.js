@@ -1,34 +1,26 @@
-document.getElementById('emailForm').addEventListener('submit', async (e) => {
-  e.preventDefault();
+// Event listener for the form submission
+document.getElementById('emailForm').addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevent default form submission
 
-  const recipient = document.getElementById('recipient').value;
+  // Retrieve form data
+  const toEmail = document.getElementById('toEmail').value;
   const message = document.getElementById('message').value;
 
-  const data = {
-    sender: { email: "jeremy.hinman@gmail.com" }, // Your verified sender email in Brevo
-    to: [{ email: recipient }],
-    subject: "Message from Your Webpage",
-    htmlContent: `<p>${message}</p>`
+  // Define parameters to send via EmailJS
+  const params = {
+    to_email: toEmail,
+    message: message
   };
 
-  try {
-    const response = await fetch('https://api.brevo.com/v3/smtp/email', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer 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`, // Replace with your Brevo API key
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    });
-
-    if (response.ok) {
+  // Send the email using EmailJS
+  emailjs.send("service_hiadywa", "template_w0ef0uq", params)
+    .then(function(response) {
+      // Show success message
       alert('Email sent successfully!');
-    } else {
-      console.error('Failed to send email', await response.json());
-      alert('Failed to send email. Please check the console for details.');
-    }
-  } catch (error) {
-    console.error('Error:', error);
-    alert('An error occurred while sending the email.');
-  }
+      console.log('Success:', response);
+    }, function(error) {
+      // Show error message
+      alert('Failed to send email. Please try again.');
+      console.error('Error:', error);
+    });
 });
