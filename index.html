@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Send Email</title>
+  <title>Email Sender with EmailJS and Brevo</title>
+  <!-- Include EmailJS SDK -->
   <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
   <script>
-    // Initialize EmailJS with your User ID
+    // Initialize EmailJS with your Public Key
     (function() {
-      emailjs.init("YOUR_USER_ID"); // Replace "YOUR_USER_ID" with your EmailJS User ID
+      emailjs.init("YOUR_PUBLIC_KEY"); // Replace "YOUR_PUBLIC_KEY" with your actual public key from EmailJS
     })();
   </script>
 </head>
@@ -24,6 +25,29 @@
     <button type="submit">Send</button>
   </form>
 
-  <script src="sendEmail.js"></script>
+  <script>
+    document.getElementById('emailForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      // Retrieve form data
+      const toEmail = document.getElementById('toEmail').value;
+      const message = document.getElementById('message').value;
+
+      // Define the EmailJS parameters
+      const params = {
+        to_email: toEmail,
+        message: message
+      };
+
+      // Send the email using EmailJS
+      emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", params)
+        .then(function(response) {
+          alert('Email sent successfully!');
+        }, function(error) {
+          console.error('Failed to send email:', error);
+          alert('Failed to send email. Please try again.');
+        });
+    });
+  </script>
 </body>
 </html>
