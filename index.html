@@ -5,11 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Email Sender with EmailJS and Brevo</title>
   <!-- Include EmailJS SDK -->
-  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3.11.0/dist/email.min.js"></script>
+
   <script>
     // Initialize EmailJS with your Public Key
     (function() {
-      emailjs.init("YOUR_PUBLIC_KEY"); // Replace "YOUR_PUBLIC_KEY" with your actual public key from EmailJS
+      emailjs.init("dH_nyQvgMIaBStOF5"); // Replace "YOUR_PUBLIC_KEY" with your actual public key from EmailJS
     })();
   </script>
 </head>
@@ -41,7 +43,7 @@
       };
 
       // Send the email using EmailJS
-      emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", params)
+      emailjs.send("service_hiadywa", "template_w0ef0uq", params)
         .then(function(response) {
           alert('Email sent successfully!');
           console.log('Success:', response);
