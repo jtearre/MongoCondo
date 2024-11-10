@@ -1,58 +1,76 @@
+// HTML file (index.html)
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Email Sender with EmailJS and Brevo</title>
-  <!-- Include EmailJS SDK -->
-
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3.11.0/dist/email.min.js"></script>
-
-  <script>
-    // Initialize EmailJS with your Public Key
-    (function() {
-      emailjs.init("q20xTMI3E1Pn9hm6s"); // Replace "YOUR_PUBLIC_KEY" with your actual public key from EmailJS
-    })();
-  </script>
+    <title>Dynamic Email Sender</title>
 </head>
 <body>
-  <h1>Send an Email</h1>
-  <form id="emailForm">
-    <label for="toEmail">Recipient Email:</label>
-    <input type="email" id="toEmail" name="toEmail" required>
-    <br><br>
-    <label for="message">Message:</label>
-    <textarea id="message" name="message" rows="4" required></textarea>
-    <br><br>
-    <button type="submit">Send</button>
-  </form>
+    <script>
+        async function sendEmail(recipientEmail, message) {
+            const FORMSPREE_ENDPOINT = 'https://formspree.io/f/REPLACE_THIS'; // Replace with your Formspree endpoint
+            
+            try {
+                const response = await fetch(FORMSPREE_ENDPOINT, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: recipientEmail,
+                        message: message
+                    })
+                });
+                
+                if (response.ok) {
+                    console.log('Email sent successfully!');
+                    return true;
+                } else {
+                    console.error('Failed to send email');
+                    return false;
+                }
+            } catch (error) {
+                console.error('Error sending email:', error);
+                return false;
+            }
+        }
 
-  <script>
-    // Event listener for form submission
-    document.getElementById('emailForm').addEventListener('submit', function(event) {
-      event.preventDefault();
-
-      // Retrieve form data
-      const toEmail = document.getElementById('toEmail').value;
-      const message = document.getElementById('message').value;
-
-      // Define parameters to send via EmailJS
-      const params = {
-        to_email: toEmail,
-        message: message
-      };
-
-      // Send the email using EmailJS
-      emailjs.send("service_mr7j7fm", "template_w0ef0uq", params)
-        .then(function(response) {
-          alert('Email sent successfully!');
-          console.log('Success:', response);
-        })
-        .catch(function(error) {
-          console.error('Failed to send email:', error);
-          alert('Failed to send email. Please check the console for details.');
-        });
-    });
-  </script>
+        // Example usage:
+        // sendEmail('recipient@example.com', 'Hello from my website!');
+    </script>
 </body>
 </html>
+
+// Example usage in your JavaScript code:
+// You can call this function from anywhere in your code
+async function sendWelcomeEmail(userEmail) {
+    await sendEmail(
+        userEmail,
+        `Welcome to our service! We're excited to have you on board.`
+    );
+}
+
+// Example of sending a notification email
+async function sendNotification(userEmail, eventDetails) {
+    await sendEmail(
+        userEmail,
+        `New event notification: ${eventDetails}`
+    );
+}
+
+// Example of sending a custom email based on user actions
+async function sendCustomEmail(userEmail, userName, orderDetails) {
+    const message = `
+        Dear ${userName},
+        
+        Thank you for your order #${orderDetails.orderId}.
+        Total amount: $${orderDetails.total}
+        
+        We'll ship your items to:
+        ${orderDetails.shippingAddress}
+        
+        Best regards,
+        Your Store Team
+    `;
+    
+    await sendEmail(userEmail, message);
+}
