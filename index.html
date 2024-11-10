@@ -9,7 +9,7 @@
   <script>
     // Initialize EmailJS with your Public Key
     (function() {
-      emailjs.init("dH_nyQvgMIaBStOF5"); // Replace "YOUR_PUBLIC_KEY" with your actual public key from EmailJS
+      emailjs.init("YOUR_PUBLIC_KEY"); // Replace "YOUR_PUBLIC_KEY" with your actual public key from EmailJS
     })();
   </script>
 </head>
@@ -26,6 +26,7 @@
   </form>
 
   <script>
+    // Event listener for form submission
     document.getElementById('emailForm').addEventListener('submit', function(event) {
       event.preventDefault();
 
@@ -33,19 +34,21 @@
       const toEmail = document.getElementById('toEmail').value;
       const message = document.getElementById('message').value;
 
-      // Define the EmailJS parameters
+      // Define parameters to send via EmailJS
       const params = {
         to_email: toEmail,
         message: message
       };
 
       // Send the email using EmailJS
-      emailjs.send("service_hiadywa", "template_w0ef0uq", params)
+      emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", params)
         .then(function(response) {
           alert('Email sent successfully!');
-        }, function(error) {
+          console.log('Success:', response);
+        })
+        .catch(function(error) {
           console.error('Failed to send email:', error);
-          alert('Failed to send email. Please try again.');
+          alert('Failed to send email. Please check the console for details.');
         });
     });
   </script>
