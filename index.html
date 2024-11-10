@@ -1,76 +1,54 @@
-// HTML file (index.html)
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Dynamic Email Sender</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="email"], textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <script>
-        async function sendEmail(recipientEmail, message) {
-            const FORMSPREE_ENDPOINT = 'https://formspree.io/f/https://formspree.io/f/xkgnbobg'; // Replace with your Formspree endpoint
-            
-            try {
-                const response = await fetch(FORMSPREE_ENDPOINT, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        email: recipientEmail,
-                        message: message
-                    })
-                });
-                
-                if (response.ok) {
-                    console.log('Email sent successfully!');
-                    return true;
-                } else {
-                    console.error('Failed to send email');
-                    return false;
-                }
-            } catch (error) {
-                console.error('Error sending email:', error);
-                return false;
-            }
-        }
-
-        // Example usage:
-        // sendEmail('recipient@example.com', 'Hello from my website!');
-    </script>
+    <h1>Contact Form</h1>
+    <form action="https://formspree.io/f/https://formspree.io/f/xkgnbobg" method="POST">
+        <div class="form-group">
+            <label for="email">Send Email To:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+        <button type="submit">Send Message</button>
+    </form>
 </body>
 </html>
-
-// Example usage in your JavaScript code:
-// You can call this function from anywhere in your code
-async function sendWelcomeEmail(userEmail) {
-    await sendEmail(
-        userEmail,
-        `Welcome to our service! We're excited to have you on board.`
-    );
-}
-
-// Example of sending a notification email
-async function sendNotification(userEmail, eventDetails) {
-    await sendEmail(
-        userEmail,
-        `New event notification: ${eventDetails}`
-    );
-}
-
-// Example of sending a custom email based on user actions
-async function sendCustomEmail(userEmail, userName, orderDetails) {
-    const message = `
-        Dear ${userName},
-        
-        Thank you for your order #${orderDetails.orderId}.
-        Total amount: $${orderDetails.total}
-        
-        We'll ship your items to:
-        ${orderDetails.shippingAddress}
-        
-        Best regards,
-        Your Store Team
-    `;
-    
-    await sendEmail(userEmail, message);
-}
