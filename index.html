@@ -4,6 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Simple Email Sender</title>
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"></script>
+  <script>
+    (function(){
+      emailjs.init("q20xTMI3E1Pn9hm6s");  // Replace with your actual public key
+    })();
+  </script>
 </head>
 <body>
   <h1>Email Sender</h1>
@@ -17,6 +24,6 @@
     <button type="button" onclick="sendEmail()">Send</button>
   </form>
 
-  <script src="sendEmail.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
