@@ -5,24 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile Page</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-        .navbar { background-color: #4677b3; color: #fff; padding: 1em; display: flex; justify-content: space-between; }
-        .container { padding: 1em; max-width: 800px; margin: 0 auto; }
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; display: flex; }
+        .sidebar { width: 200px; background-color: #4677b3; color: #fff; padding: 1em; height: 100vh; position: fixed; }
+        .sidebar a { color: #fff; display: block; margin-bottom: 1em; text-decoration: none; }
+        .container { padding: 1em; max-width: 800px; margin: 0 auto; margin-left: 220px; width: calc(100% - 220px); }
         .profile-info { display: flex; align-items: center; margin-bottom: 1em; color: #4677b3; }
         .profile-picture { width: 80px; height: 80px; border-radius: 50%; margin-right: 15px; }
-        .user-details { margin-left: 0; } /* Align username and unit number to the left */
-        .message { border: 1px solid #ccc; padding: 1em; margin-bottom: 1em; margin-left: 60px; color: #4677b3; } /* Main message indented further */
+        .user-details { margin-left: 0; }
+        .message { border: 1px solid #ccc; padding: 1em; margin-bottom: 1em; margin-left: 60px; color: #4677b3; }
         .comment { margin-left: 80px; padding: 0.5em 0; border-top: 1px solid #eee; color: #4677b3; }
     </style>
 </head>
 <body>
 
-    <div class="navbar">
-        <span>Profile</span>
-        <a href="feed.html" style="color: #fff;">Community Feed</a>
+    <div class="sidebar">
+        <h2>Menu</h2>
+        <a href="feed.html">Community Feed</a>
+        <a href="directory.html">Community Directory</a>
     </div>
 
     <div class="container">
+        <h1>My Profile</h1>
         <!-- Profile Information -->
         <div class="profile-info">
             <img src="https://via.placeholder.com/80" alt="Profile Picture" class="profile-picture">
