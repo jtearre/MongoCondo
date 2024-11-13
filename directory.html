@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Community Directory</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-        .navbar { background-color: #4677b3; color: #fff; padding: 1em; display: flex; justify-content: space-between; }
-        .container { padding: 1em; max-width: 800px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 1em; }
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; display: flex; }
+        .sidebar { width: 200px; background-color: #4677b3; color: #fff; padding: 1em; height: 100vh; position: fixed; }
+        .sidebar a { color: #fff; display: block; margin-bottom: 1em; text-decoration: none; }
+        .container { padding: 1em; max-width: 800px; margin: 0 auto; margin-left: 220px; width: calc(100% - 220px); display: flex; flex-wrap: wrap; gap: 1em; }
         .profile { width: 30%; text-align: center; color: #4677b3; }
         .profile-picture { width: 100%; border-radius: 10px; }
         .profile-info { margin-top: 0.5em; }
@@ -15,12 +16,14 @@
 </head>
 <body>
 
-    <div class="navbar">
-        <span>Community Directory</span>
-        <a href="feed.html" style="color: #fff;">Community Feed</a>
+    <div class="sidebar">
+        <h2>Menu</h2>
+        <a href="feed.html">Community Feed</a>
+        <a href="profile.html">My Profile</a>
     </div>
 
     <div class="container">
+        <h1>Community Directory</h1>
         <!-- Example User Profile -->
         <div class="profile">
             <img src="https://via.placeholder.com/150" alt="Profile Picture" class="profile-picture">
@@ -29,8 +32,6 @@
                 <span>Unit 101</span>
             </div>
         </div>
-
-        <!-- Repeat similar profile structure for more users -->
     </div>
 
 </body>
