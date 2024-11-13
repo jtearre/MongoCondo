@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        .navbar { background-color: #333; color: #fff; padding: 1em; display: flex; justify-content: space-between; }
+        .container { padding: 1em; max-width: 800px; margin: 0 auto; }
+        .profile-info { display: flex; align-items: center; margin-bottom: 1em; }
+        .profile-picture { width: 80px; height: 80px; border-radius: 50%; margin-right: 15px; }
+        .message { border: 1px solid #ccc; padding: 1em; margin-bottom: 1em; }
+        .comment { margin-left: 20px; padding: 0.5em 0; border-top: 1px solid #eee; }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <span>Profile</span>
+        <a href="feed.html" style="color: #fff;">Community Feed</a>
+    </div>
+
+    <div class="container">
+        <!-- Profile Information -->
+        <div class="profile-info">
+            <img src="https://via.placeholder.com/80" alt="Profile Picture" class="profile-picture">
+            <div>
+                <h2>User Name</h2>
+                <p>Unit Number: 101</p>
+            </div>
+        </div>
+
+        <!-- Example Message -->
+        <div class="message">
+            <strong>Direct Message</strong>
+            <p>Hey, are you still interested in borrowing my ladder?</p>
+            <!-- Replies -->
+            <div class="comment"><strong>Me</strong>: Yes, thank you! I’ll stop by tomorrow.</div>
+            <div class="comment"><strong>User Name</strong>: Great, see you then!</div>
+        </div>
+    </div>
+
+</body>
+</html>
