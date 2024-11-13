@@ -1,22 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MongoCondo Login</title>
-  <!-- EmailJS SDK -->
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"></script>
-  <script>
-    (function(){
-      emailjs.init("q20xTMI3E1Pn9hm6s");
-    })();
-  </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Feed</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+        .navbar { background-color: #333; color: #fff; padding: 1em; display: flex; justify-content: space-between; }
+        .container { padding: 1em; max-width: 800px; margin: 0 auto; }
+        .post { border: 1px solid #ccc; padding: 1em; margin-bottom: 1em; }
+        .post-header { display: flex; align-items: center; margin-bottom: 0.5em; }
+        .thumbnail { width: 50px; height: 50px; border-radius: 50%; margin-right: 10px; }
+        .category { background-color: #eee; padding: 0.2em 0.5em; font-size: 0.9em; border-radius: 5px; }
+        .comment { margin-left: 20px; padding: 0.5em 0; border-top: 1px solid #eee; }
+    </style>
 </head>
 <body>
-  <div id="content">
-    <!-- Dynamic content will be injected here by JavaScript -->
-  </div>
 
-  <script src="script.js"></script>
+    <div class="navbar">
+        <span>Community Feed</span>
+        <div>
+            <a href="directory.html" style="color: #fff; margin-right: 1em;">Community Directory</a>
+            <a href="profile.html" style="color: #fff;">My Profile</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Example Post -->
+        <div class="post">
+            <div class="post-header">
+                <img src="https://via.placeholder.com/50" alt="User Thumbnail" class="thumbnail">
+                <div>
+                    <strong>User Name</strong>
+                    <span class="category">Giving Away Stuff</span>
+                </div>
+            </div>
+            <p>Looking to give away a gently used sofa. Let me know if you're interested!</p>
+            <!-- Comments -->
+            <div class="comment"><strong>Commenter Name</strong>: I'd be interested!</div>
+            <div class="comment"><strong>Another User</strong>: Still available?</div>
+        </div>
+
+        <!-- Repeat similar post structure for more posts -->
+    </div>
+
 </body>
 </html>
