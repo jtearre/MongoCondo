@@ -12,10 +12,11 @@
         .container { padding: 20px; max-width: 800px; margin: 0 auto; margin-left: 220px; width: calc(100% - 220px); }
         h1 { color: #4677b3; font-size: 24px; margin-bottom: 20px; }
         .profile-info { display: flex; align-items: center; background-color: #fff; padding: 20px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); }
-        .profile-picture { width: 80px; height: 80px; border-radius: 50%; margin-right: 15px; }
+        .profile-picture { width: 150px; height: 150px; border-radius: 8px; object-fit: cover; margin-right: 15px; }
+        .thumbnail-picture { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; margin-top: 10px; }
         .user-details { color: #333; }
         .message { background-color: #fff; border-radius: 8px; padding: 20px; margin-bottom: 20px; box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); }
-        .comment { margin-left: 70px; padding: 10px 0; border-top: 1px solid #eee; color: #4677b3; font-size: 0.9em; }
+        .upload-section { margin-top: 20px; }
     </style>
 </head>
 <body>
@@ -30,22 +31,40 @@
         <h1>My Profile</h1>
         <!-- Profile Information -->
         <div class="profile-info">
-            <img src="https://via.placeholder.com/80" alt="Profile Picture" class="profile-picture">
+            <img id="profile-picture" src="https://via.placeholder.com/150" alt="Profile Picture" class="profile-picture">
             <div class="user-details">
                 <h2>User Name</h2>
                 <p>Unit Number: 101</p>
             </div>
         </div>
 
-        <!-- Example Message -->
-        <div class="message">
-            <strong>Direct Message</strong>
-            <p>Hey, are you still interested in borrowing my ladder?</p>
-            <!-- Replies -->
-            <div class="comment"><strong>Me</strong>: Yes, thank you! I’ll stop by tomorrow.</div>
-            <div class="comment"><strong>User Name</strong>: Great, see you then!</div>
+        <!-- Upload Picture Button and Display Thumbnail -->
+        <div class="upload-section">
+            <label for="upload-input">Upload or Change Profile Picture:</label>
+            <input type="file" id="upload-input" accept="image/*" onchange="handleImageUpload(event)">
+            <div>
+                <strong>Thumbnail Preview:</strong>
+                <img id="thumbnail-picture" src="https://via.placeholder.com/50" alt="Thumbnail Picture" class="thumbnail-picture">
+            </div>
         </div>
     </div>
+
+    <script>
+        function handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imgSrc = e.target.result;
+                    // Set the large profile picture
+                    document.getElementById('profile-picture').src = imgSrc;
+                    // Set the thumbnail picture
+                    document.getElementById('thumbnail-picture').src = imgSrc;
+                };
+                reader.readAsDataURL(file); // Reads the image as a data URL
+            }
+        }
+    </script>
 
 </body>
 </html>
